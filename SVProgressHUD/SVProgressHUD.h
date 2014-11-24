@@ -62,13 +62,10 @@ typedef NS_ENUM(NSUInteger, SVProgressHUDMaskType) {
 
 + (BOOL)isVisible;
 
-@end
 
-
-@interface SVIndefiniteAnimatedView : UIView
-
-@property (nonatomic, assign) CGFloat strokeThickness;
-@property (nonatomic, assign) CGFloat radius;
-@property (nonatomic, strong) UIColor *strokeColor;
+/* DF ADDED */
++ (void)showWithDuration:(float)duration;
++ (void)showWithDuration:(float)duration withMaskType:(SVProgressHUDMaskType)maskType;
+/* DF ADDED */
 
 @end
