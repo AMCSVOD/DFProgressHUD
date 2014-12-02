@@ -31,6 +31,10 @@ static UIFont *SVProgressHUDFont;
 static UIImage *SVProgressHUDSuccessImage;
 static UIImage *SVProgressHUDErrorImage;
 
+// DF ADDED
+static NSArray* SVAnimatedImageNames;
+// DF ADDED
+
 static const CGFloat SVProgressHUDRingRadius = 18;
 static const CGFloat SVProgressHUDRingNoTextRadius = 24;
 static const CGFloat SVProgressHUDParallaxDepthPoints = 10;
@@ -119,6 +123,11 @@ static const CGFloat SVProgressHUDParallaxDepthPoints = 10;
 + (void)setErrorImage:(UIImage *)image {
     [self sharedView];
     SVProgressHUDErrorImage = image;
+}
+
++ (void)setAnimatedImageNames:(NSArray *)names {
+    [self sharedView];
+    SVAnimatedImageNames = names;
 }
 
 /* DF ADDED */
@@ -850,23 +859,18 @@ static const CGFloat SVProgressHUDParallaxDepthPoints = 10;
 /* DF ADDED */
 - (UIImageView *)animatedImage
 {
+    if (![SVAnimatedImageNames count])
+        return nil;
+    
     if(!_animatedImage)
     {
         _animatedImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, maxFrame, maxFrame)];
         
-        NSMutableArray *imageNames = [[NSMutableArray alloc] init];
-        
-        for(int i = 0; i < 30; i++)
-            if(i <= 9)
-                [imageNames addObject:[NSString stringWithFormat:@"_000%d_Layer-Comp-%d",i,i + 1]];
-            else
-                [imageNames addObject:[NSString stringWithFormat:@"_00%d_Layer-Comp-%d",i,i + 1]];
-        
         NSMutableArray *images = [[NSMutableArray alloc] init];
         
-        for (int i = 0; i < imageNames.count; i++)
-            if([UIImage imageNamed:[imageNames objectAtIndex:i]] != nil)
-                [images addObject:[UIImage imageNamed:[imageNames objectAtIndex:i]]];
+        for (int i = 0; i < SVAnimatedImageNames.count; i++)
+            if([UIImage imageNamed:[SVAnimatedImageNames objectAtIndex:i]] != nil)
+                [images addObject:[UIImage imageNamed:[SVAnimatedImageNames objectAtIndex:i]]];
         
         _animatedImage.animationImages = images;
     }

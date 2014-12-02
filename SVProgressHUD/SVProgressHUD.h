@@ -36,6 +36,10 @@ typedef NS_ENUM(NSUInteger, SVProgressHUDMaskType) {
 + (void)setSuccessImage:(UIImage*)image; // default is bundled success image from Glyphish
 + (void)setErrorImage:(UIImage*)image; // default is bundled error image from Glyphish
 
+/* DF ADDED */
++ (void)setAnimatedImageNames:(NSArray*)names;
+/* DF ADDED */
+
 #pragma mark - Show Methods
 
 + (void)show;
