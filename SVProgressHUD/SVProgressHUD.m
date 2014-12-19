@@ -295,7 +295,6 @@ static const CGFloat SVProgressHUDParallaxDepthPoints = 10;
     NSString *string = self.stringLabel.text;
     // False if it's text-only
     BOOL imageUsed = (self.imageView.image) || (self.imageView.hidden);
-    
     if(string) {
         CGSize constraintSize = CGSizeMake(200, 300);
         CGRect stringRect;
@@ -326,7 +325,7 @@ static const CGFloat SVProgressHUDParallaxDepthPoints = 10;
         
         CGFloat labelRectY = imageUsed ? 68 : 9;
         // DF ADDED
-        if (_animatedImage != nil)
+        if (self.animatedImage != nil)
             labelRectY = 80;
         // DF ADDED
         
